@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='calculator.css') }}"/>
+</head>
+<body>
+    <h1>Python Flask Calculator</h1>
+    <form method="post" action="{{ url_for('operation_result') }}" id="calculator_form">
+        <label for="Input1">Input1:</label>
+        <input type="text" name="Input1" id="Input1">
+        <br/>
+        <label for="Input2">Input2:</label>
+        <input type="text" name="Input2" id="Input2">
+        <br/>
+        <label for="operation">Operation</label>
+        <select id="operation" name="operation">
+            <option value="prime">Prime</option>
+            <option value="primepalindrome">PrimePalindrome</option>
+        </select>
+        <br/>
+        <input type="submit" value="Submit"/>
+    </form>
+    {% if calculation_success == True %}
+        {% if operation == "prime" %}
+        <br/>
+        <p>The {{operation}} from {{input1}} - {{input2}} is: {{result}}</p>
+        {% endif %}
+        {% if operation == "primepalindrome" %}
+        <br/>
+        <p>The {{operation}} from {{input1}} - {{input2}} is: {{result2}}</p>
+        {% endif %}
+    {% endif %}
+    {% if calculation_success == False %}
+        <br/>
+        <p>{{error}}</p>
+    {% endif %}
+</body>
+</html>
